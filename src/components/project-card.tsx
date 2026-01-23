@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Card,
@@ -7,6 +9,18 @@ import {
   Button,
 } from "@material-tailwind/react";
 
+/**
+ * SOLUCIÓN PARA TYPESCRIPT:
+ * Silencia los errores de propiedades faltantes en Material Tailwind.
+ */
+const fixMTProps = {
+  placeholder: "",
+  onPointerEnterCapture: undefined,
+  onPointerLeaveCapture: undefined,
+  onResize: undefined,
+  onResizeCapture: undefined,
+} as any;
+
 interface ProjectCardProps {
   img: string;
   title: string;
@@ -15,30 +29,38 @@ interface ProjectCardProps {
 
 export function ProjectCard({ img, title, desc }: ProjectCardProps) {
   return (
-    <Card color="transparent" shadow={false}>
-      <CardHeader floated={false} className="mx-0 mt-0 mb-6 h-48">
+    <Card {...fixMTProps} color="transparent" shadow={false}>
+      <CardHeader 
+        {...fixMTProps} 
+        floated={false} 
+        className="mx-0 mt-0 mb-6 h-64 overflow-hidden rounded-[30px]"
+      >
         <Image
           src={img}
           alt={title}
           width={768}
           height={768}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
         />
       </CardHeader>
-      <CardBody className="p-0">
+      <CardBody {...fixMTProps} className="p-0">
         <a
           href="#"
-          className="text-blue-gray-900 transition-colors hover:text-gray-800"
+          className="text-black transition-colors hover:text-slate-600"
         >
-          <Typography variant="h5" className="mb-2">
+          <Typography {...fixMTProps} variant="h5" className="mb-2 font-serif text-2xl">
             {title}
           </Typography>
         </a>
-        <Typography className="mb-6 font-normal !text-gray-500">
+        <Typography {...fixMTProps} className="mb-6 font-light text-slate-500 leading-relaxed">
           {desc}
         </Typography>
-        <Button color="gray" size="sm">
-          see details
+        <Button 
+          {...fixMTProps} 
+          size="sm"
+          className="rounded-full bg-black normal-case tracking-widest text-[10px] shadow-none hover:shadow-lg"
+        >
+          Ver detalles
         </Button>
       </CardBody>
     </Card>

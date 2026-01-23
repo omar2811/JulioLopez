@@ -4,6 +4,18 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Typography } from "@material-tailwind/react";
 
+/**
+ * SOLUCIÓN PARA TYPESCRIPT:
+ * Limpia las propiedades exigidas por Material Tailwind.
+ */
+const fixMTProps = {
+  placeholder: "",
+  onPointerEnterCapture: undefined,
+  onPointerLeaveCapture: undefined,
+  onResize: undefined,
+  onResizeCapture: undefined,
+} as any;
+
 const events = [
   {
     title: "Bodas",
@@ -34,73 +46,81 @@ const events = [
 export default function Skills() {
   return (
     <section className="py-28 bg-white relative overflow-hidden">
-      <div className="container mx-auto px-8">
-        {/* Header */}
+      <div className="container mx-auto px-6 lg:px-8">
+        
+        {/* Encabezado */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
           <Typography
-            variant="small"
-            className="uppercase tracking-widest text-gray-600 mb-4"
+            {...fixMTProps}
+            as="p"
+            className="uppercase tracking-[0.3em] text-[10px] font-bold text-slate-400 mb-4"
           >
             Lo que hacemos
           </Typography>
 
           <Typography
+            {...fixMTProps}
             variant="h2"
-            className="text-4xl lg:text-5xl font-extrabold mb-6"
+            className="text-4xl lg:text-5xl font-serif font-medium text-black mb-6"
           >
-            Tipos de eventos
+            Tipos de <span className="italic text-slate-400 font-extralight">Eventos</span>
           </Typography>
 
-          <Typography className="text-gray-500 max-w-2xl mx-auto">
+          <div className="w-12 h-[1px] bg-black mx-auto mb-6" />
+
+          <Typography {...fixMTProps} className="text-slate-500 max-w-2xl mx-auto font-light">
             Cada evento es diferente. Nos adaptamos a tu estilo, objetivo y
-            momento especial.
+            momento especial con una ejecución impecable.
           </Typography>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Grid de Eventos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {events.map((event, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative h-[26rem] rounded-3xl overflow-hidden cursor-pointer"
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group relative h-[30rem] rounded-[40px] overflow-hidden cursor-pointer shadow-sm"
             >
-              {/* Imagen */}
+              {/* Imagen con zoom al hover */}
               <Image
                 src={event.image}
                 alt={event.title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                className="object-cover transition-transform duration-1000 group-hover:scale-110"
               />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              {/* Overlay más elegante (gradiente más suave) */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
 
               {/* Contenido */}
-              <div className="absolute bottom-0 p-8 z-10">
+              <div className="absolute bottom-0 p-10 z-10 w-full">
                 <Typography
+                  {...fixMTProps}
                   variant="h3"
-                  className="text-white font-extrabold mb-3"
+                  className="text-white font-serif text-3xl mb-4"
                 >
                   {event.title}
                 </Typography>
 
-                <Typography className="text-gray-200 max-w-md leading-relaxed">
+                <div className="h-[1px] w-0 bg-white/50 mb-4 transition-all duration-700 group-hover:w-full" />
+
+                <Typography {...fixMTProps} className="text-slate-200 font-light leading-relaxed max-w-sm">
                   {event.description}
                 </Typography>
               </div>
 
-              {/* Hover glow */}
-              <div className="absolute inset-0 ring-1 ring-white/10 rounded-3xl opacity-0 group-hover:opacity-100 transition" />
+              {/* Borde sutil al hover */}
+              <div className="absolute inset-0 border-[1px] border-white/20 rounded-[40px] m-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </motion.div>
           ))}
         </div>

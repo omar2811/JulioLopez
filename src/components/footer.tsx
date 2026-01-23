@@ -1,11 +1,8 @@
 "use client";
 
+import Image from "next/image"; // Importamos el componente optimizado
 import { Typography } from "@material-tailwind/react";
 
-/**
- * SOLUCIÓN DEFINITIVA PARA TYPESCRIPT:
- * Silencia los errores de propiedades faltantes en Material Tailwind.
- */
 const fixMTProps = {
   placeholder: "",
   onPointerEnterCapture: undefined,
@@ -28,21 +25,20 @@ const CURRENT_YEAR = new Date().getFullYear();
 export function Footer() {
   return (
     <footer className="relative bg-white px-8 pt-24 pb-12 overflow-hidden">
-      {/* Línea decorativa superior sutil */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
       <div className="container mx-auto">
         <div className="flex flex-col items-center gap-12 text-center">
-          {/* Logo con efecto de escala suave */}
-          <a href="#home" className="transition-transform hover:scale-105 duration-500">
-            <img
+          {/* CORRECCIÓN 1: Usamos <Image /> de Next.js para el Logo */}
+          <a href="#home" className="transition-transform hover:scale-105 duration-500 relative h-16 w-40">
+            <Image
               src="/image/logo.jpg"
               alt="Julio López Logo"
-              className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-700"
+              fill
+              className="object-contain grayscale hover:grayscale-0 transition-all duration-700"
             />
           </a>
 
-          {/* Navegación Minimalista */}
           <nav>
             <ul className="flex flex-wrap justify-center gap-x-12 gap-y-4">
               {FOOTER_LINKS.map(({ name, href }) => (
@@ -60,16 +56,15 @@ export function Footer() {
             </ul>
           </nav>
 
-          {/* Frase de Cierre */}
+          {/* CORRECCIÓN 2: Escapamos las comillas con &quot; */}
           <Typography
             {...fixMTProps}
             className="max-w-md text-slate-400 font-serif italic text-sm font-light"
           >
-            "Diseñando atmósferas donde cada detalle cuenta una historia inolvidable."
+            &quot;Diseñando atmósferas donde cada detalle cuenta una historia inolvidable.&quot;
           </Typography>
         </div>
 
-        {/* Sección Inferior / Copyright */}
         <div className="mt-20 border-t border-slate-100 pt-8 flex flex-col items-center gap-6 md:flex-row md:justify-between">
           <Typography
             {...fixMTProps}

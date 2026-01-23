@@ -1,4 +1,19 @@
+"use client";
+
+import React from "react";
 import { Card, CardBody, Typography } from "@material-tailwind/react";
+
+/**
+ * SOLUCIÓN PARA TYPESCRIPT:
+ * Silencia los errores de propiedades faltantes en Material Tailwind.
+ */
+const fixMTProps = {
+  placeholder: "",
+  onPointerEnterCapture: undefined,
+  onPointerLeaveCapture: undefined,
+  onResize: undefined,
+  onResizeCapture: undefined,
+} as any;
 
 interface SkillCardProps {
   title: string;
@@ -8,15 +23,27 @@ interface SkillCardProps {
 
 export function SkillCard({ icon: Icon, title, children }: SkillCardProps) {
   return (
-    <Card color="transparent" shadow={false}>
-      <CardBody className="grid justify-center text-center">
-        <div className="mx-auto mb-6 grid h-12 w-12 place-items-center rounded-full bg-gray-900 p-2.5 text-white shadow">
-          <Icon className="h-6 w-6" strokeWidth={2} />
+    <Card {...fixMTProps} color="transparent" shadow={false} className="group">
+      <CardBody {...fixMTProps} className="grid justify-center text-center">
+        {/* Contenedor del Icono - Estilo minimalista */}
+        <div className="mx-auto mb-8 grid h-16 w-16 place-items-center rounded-2xl bg-slate-50 text-black transition-all duration-300 group-hover:bg-black group-hover:text-white group-hover:shadow-xl group-hover:shadow-slate-200">
+          <Icon className="h-7 w-7" strokeWidth={1.5} />
         </div>
-        <Typography variant="h5" color="blue-gray" className="mb-2">
+
+        {/* Título - Fuente Serif para coherencia */}
+        <Typography 
+          {...fixMTProps} 
+          variant="h5" 
+          className="mb-3 font-serif text-2xl text-black"
+        >
           {title}
         </Typography>
-        <Typography className="px-8 font-normal !text-gray-500">
+
+        {/* Descripción - Fuente ligera */}
+        <Typography 
+          {...fixMTProps} 
+          className="px-4 font-light leading-relaxed text-slate-500"
+        >
           {children}
         </Typography>
       </CardBody>
