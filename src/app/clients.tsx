@@ -9,102 +9,119 @@ import {
   PartyPopper,
 } from "lucide-react";
 
+/**
+ * SOLUCIÓN DEFINITIVA TS: 
+ * Forzamos un objeto de props que cumpla con lo que pide el componente 
+ * para silenciar los errores de captura de eventos.
+ */
+const fixMTProps = {
+  placeholder: "",
+  onPointerEnterCapture: undefined,
+  onPointerLeaveCapture: undefined,
+  onResize: undefined,
+  onResizeCapture: undefined,
+} as any; // Usamos 'as any' aquí para que TS no valide estas props internas
+
 const steps = [
   {
     icon: CalendarDays,
     title: "Escuchamos tu idea",
-    description:
-      "Conocemos tu visión, necesidades y expectativas para crear un evento a tu medida.",
+    description: "Conocemos tu visión, necesidades y expectativas para crear un evento a tu medida.",
   },
   {
     icon: PencilRuler,
     title: "Diseñamos la experiencia",
-    description:
-      "Creamos el concepto, ambientación y planeación cuidando cada detalle.",
+    description: "Creamos el concepto, ambientación y planeación cuidando cada detalle.",
   },
   {
     icon: ClipboardCheck,
     title: "Coordinamos todo",
-    description:
-      "Nos encargamos de proveedores, tiempos y logística para que todo fluya.",
+    description: "Nos encargamos de proveedores, tiempos y logística para que todo fluya.",
   },
   {
     icon: PartyPopper,
     title: "Vivimos el evento",
-    description:
-      "Ejecutamos el evento con precisión para que tú solo disfrutes el momento.",
+    description: "Ejecutamos el evento con precisión para que tú solo disfrutes el momento.",
   },
 ];
 
-export default function Clients() {
+export default function HowWeWork() {
   return (
-    <section className="relative py-24 bg-gray-50 overflow-hidden">
-      {/* Fondo decorativo */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-white pointer-events-none" />
+    <section className="relative py-24 bg-white overflow-hidden">
+      <div className="absolute inset-0 bg-slate-50/30 pointer-events-none" />
 
-      <div className="relative container mx-auto px-8 z-10">
-        {/* Header */}
+      <div className="relative container mx-auto px-6 z-10">
+        {/* Encabezado */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <Typography
-            variant="small"
-            className="uppercase tracking-widest text-gray-600 mb-4"
+            {...fixMTProps}
+            as="p"
+            className="uppercase tracking-[0.3em] text-[10px] font-bold text-slate-400 mb-4"
           >
             Nuestro proceso
           </Typography>
 
           <Typography
+            {...fixMTProps}
             variant="h2"
-            className="text-4xl lg:text-5xl font-extrabold mb-6"
+            className="text-4xl lg:text-5xl font-serif font-medium text-black mb-6"
           >
             Cómo trabajamos
           </Typography>
 
-          <Typography className="text-gray-500 max-w-2xl mx-auto">
-            Un proceso claro, creativo y bien estructurado para lograr eventos
-            memorables.
+          <div className="w-12 h-[1px] bg-black mx-auto mb-6" />
+
+          <Typography 
+            {...fixMTProps} 
+            className="text-slate-500 max-w-xl mx-auto font-light leading-relaxed"
+          >
+            Un camino estructurado para transformar tu visión en una realidad impecable.
           </Typography>
         </motion.div>
 
-        {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all p-8 text-center"
-              >
-                <div className="flex items-center justify-center mb-6">
-                  <div className="h-14 w-14 rounded-full bg-gray-900 text-white flex items-center justify-center">
-                    <Icon size={28} />
-                  </div>
+        {/* Pasos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="group bg-white border border-slate-100 rounded-[32px] p-10 shadow-sm hover:shadow-xl transition-all duration-300 text-center"
+            >
+              <div className="flex items-center justify-center mb-8">
+                <div className="h-16 w-16 rounded-2xl bg-slate-50 text-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors duration-300">
+                  <step.icon size={28} strokeWidth={1.5} />
                 </div>
+              </div>
 
-                <Typography
-                  variant="h5"
-                  className="font-bold mb-3"
-                >
-                  {step.title}
-                </Typography>
+              <Typography
+                {...fixMTProps}
+                variant="h5"
+                className="font-serif font-bold text-black mb-4"
+              >
+                {step.title}
+              </Typography>
 
-                <Typography className="text-gray-500 text-sm leading-relaxed">
-                  {step.description}
-                </Typography>
-              </motion.div>
-            );
-          })}
+              <Typography 
+                {...fixMTProps} 
+                className="text-slate-500 text-sm font-light leading-relaxed"
+              >
+                {step.description}
+              </Typography>
+              
+              <div className="mt-6 text-[10px] font-bold text-slate-200">
+                0{index + 1}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
