@@ -17,7 +17,7 @@ const images = [
   "/image/imagen3.jpg",
   "/image/imagen2.jpg",
   "/image/imagen4.jpg",
-  "/image/IMG_0661.jpg",
+  "/image/IMG_0661.JPG",
   "/image/PHOTO-2026-01-10-20-50-19.jpg",
   "/image/PHOTO-2026-01-10-20-51-06 2.jpg",
   "/image/PHOTO-2026-01-10-20-51-06 3.jpg",

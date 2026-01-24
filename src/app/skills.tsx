@@ -21,7 +21,7 @@ const events = [
     title: "Bodas",
     description:
       "Creamos bodas únicas, elegantes y llenas de emoción que se viven una sola vez.",
-    image: "/image/IMG_0658.jpg",
+    image: "/image/IMG_0658.JPG",
   },
   {
     title: "Eventos Corporativos",
@@ -33,13 +33,13 @@ const events = [
     title: "Fiestas Sociales",
     description:
       "Cumpleaños, aniversarios y celebraciones inolvidables para compartir.",
-    image: "/image/IMG_0659.jpg",
+    image: "/image/IMG_0659.JPG",
   },
   {
     title: "Eventos Especiales",
     description:
       "Diseñamos experiencias a la medida para momentos que merecen algo extraordinario.",
-    image: "/image/IMG_0660.jpg",
+    image: "/image/IMG_0660.JPG",
   },
 ];
 
