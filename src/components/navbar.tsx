@@ -71,6 +71,11 @@ export function Navbar() {
             </ul>
             
             {/* BOTÓN CTA */}
+             <a 
+      href="https://wa.me/529241383113?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20sus%20servicios%20de%20fiestas." 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
             <Button
               {...fixMTProps}
               size="sm"
@@ -78,6 +83,7 @@ export function Navbar() {
             >
               Contáctanos
             </Button>
+</a>
           </div>
 
           {/* BOTÓN MÓVIL (Hamburguesa en negro) */}
@@ -112,6 +118,11 @@ export function Navbar() {
               ))}
             </ul>
             <div className="mt-8">
+                   <a 
+      href="https://wa.me/529241383113?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20sus%20servicios%20de%20fiestas." 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
               <Button
                 {...fixMTProps}
                 fullWidth
@@ -120,6 +131,7 @@ export function Navbar() {
               >
                 Contáctanos
               </Button>
+              </a>
             </div>
           </div>
         </Collapse>

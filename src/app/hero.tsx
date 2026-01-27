@@ -57,27 +57,37 @@ function Hero() {
             para crear atmósferas únicas y sofisticadas.
           </Typography>
 
-          <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
-            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
-              <Button 
-                {...fixMTProps} // Aplicado aquí para corregir el error del botón
-                size="lg" 
-                className="bg-black hover:bg-slate-900 px-10 rounded-full normal-case text-sm font-medium shadow-none transition-all"
-              >
-                Contáctanos
-              </Button>
-            </motion.div>
-            
-            <Button 
-              {...fixMTProps} // Aplicado aquí para corregir el error del botón
-              variant="text" 
-              size="lg" 
-              className="flex items-center gap-2 rounded-full normal-case text-sm text-black font-semibold hover:bg-slate-50 transition-colors"
-            >
-              Ver Galería
-              <ChevronRightIcon className="w-4 h-4" />
-            </Button>
-          </div>
+<div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
+  {/* BOTÓN WHATSAPP */}
+  <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+    <a 
+      href="https://wa.me/529241383113?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20sus%20servicios%20de%20fiestas." 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
+      <Button 
+        {...fixMTProps}
+        size="lg" 
+        className="bg-black hover:bg-slate-900 px-10 rounded-full normal-case text-sm font-medium shadow-none transition-all w-full sm:w-auto"
+      >
+        Contáctanos
+      </Button>
+    </a>
+  </motion.div>
+  
+  {/* BOTÓN GALERÍA */}
+  <a href="#tipos-de-eventos"> {/* Asegúrate de que tu sección de galería tenga el id="galeria" */}
+    <Button 
+      {...fixMTProps}
+      variant="text" 
+      size="lg" 
+      className="flex items-center gap-2 rounded-full normal-case text-sm text-black font-semibold hover:bg-slate-50 transition-colors w-full sm:w-auto"
+    >
+      Ver Galería
+      <ChevronRightIcon className="w-4 h-4" />
+    </Button>
+  </a>
+</div>
         </motion.div>
 
         {/* LADO DERECHO: IMAGEN */}

@@ -1,12 +1,11 @@
 "use client";
 
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button, Typography, Input, Textarea } from "@material-tailwind/react";
 
 /**
- * SOLUCIÓN DEFINITIVA PARA TYPESCRIPT:
- * Aplicamos esto a todos los componentes de Material Tailwind
- * para silenciar los errores de propiedades faltantes.
+ * SOLUCIÓN DEFINITIVA PARA TYPESCRIPT
  */
 const fixMTProps = {
   placeholder: "",
@@ -17,9 +16,44 @@ const fixMTProps = {
 } as any;
 
 export default function ContactSection() {
+  // 1. Estado para capturar los datos del formulario
+  const [formData, setFormData] = useState({
+    nombre: "",
+    telefono: "",
+    correo: "",
+    idea: "",
+  });
+
+  // 2. Manejador de cambios en los inputs
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // 3. Función de envío a WhatsApp
+  const handleWhatsAppSend = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const numero = "529241383113"; // Tu número con código de país (México)
+    const { nombre, telefono, correo, idea } = formData;
+
+    // Formateo del mensaje para WhatsApp
+    const mensaje = 
+      `*Nuevo Registro de Evento*%0A%0A` +
+      `*Nombre:* ${nombre}%0A` +
+      `*Teléfono:* ${telefono}%0A` +
+      `*Correo:* ${correo}%0A` +
+      `*Idea del Evento:* ${idea}`;
+
+    const url = `https://wa.me/${numero}?text=${mensaje}`;
+    
+    // Abre la ventana de WhatsApp
+    window.open(url, "_blank");
+  };
+
   return (
     <section className="relative py-28 bg-white overflow-hidden">
-      {/* Fondo sutil para dar profundidad */}
+      {/* Fondo sutil */}
       <div className="absolute inset-0 bg-slate-50/30 pointer-events-none" />
 
       <div className="relative container mx-auto px-6 max-w-2xl z-10">
@@ -51,8 +85,9 @@ export default function ContactSection() {
           <div className="w-12 h-[1px] bg-black mx-auto mb-6" />
         </motion.div>
 
-        {/* Formulario Estilizado */}
+        {/* Formulario */}
         <motion.form 
+          onSubmit={handleWhatsAppSend}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -62,6 +97,10 @@ export default function ContactSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Input 
               {...fixMTProps} 
+              name="nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+              required
               variant="standard" 
               label="Nombre completo" 
               className="focus:border-black"
@@ -69,6 +108,10 @@ export default function ContactSection() {
             />
             <Input 
               {...fixMTProps} 
+              name="telefono"
+              value={formData.telefono}
+              onChange={handleChange}
+              required
               variant="standard" 
               label="Teléfono" 
               className="focus:border-black"
@@ -78,6 +121,11 @@ export default function ContactSection() {
 
           <Input 
             {...fixMTProps} 
+            name="correo"
+            value={formData.correo}
+            onChange={handleChange}
+            required
+            type="email"
             variant="standard" 
             label="Correo electrónico" 
             className="focus:border-black"
@@ -85,6 +133,10 @@ export default function ContactSection() {
 
           <Textarea 
             {...fixMTProps} 
+            name="idea"
+            value={formData.idea}
+            onChange={handleChange}
+            required
             variant="standard" 
             label="Cuéntanos sobre tu idea (Tipo de evento, fecha, invitados...)" 
             className="focus:border-black"
@@ -97,11 +149,12 @@ export default function ContactSection() {
           >
             <Button 
               {...fixMTProps}
+              type="submit"
               fullWidth 
               size="lg" 
               className="bg-black hover:bg-slate-900 rounded-full normal-case text-sm font-medium py-4 shadow-none"
             >
-              Enviar mensaje
+              Enviar mensaje por WhatsApp
             </Button>
           </motion.div>
           
@@ -109,7 +162,7 @@ export default function ContactSection() {
             {...fixMTProps}
             className="text-center text-[10px] text-slate-400 uppercase tracking-widest"
           >
-            Te responderemos en menos de 24 horas
+            Se abrirá una nueva ventana con tu mensaje listo para enviar
           </Typography>
         </motion.form>
       </div>

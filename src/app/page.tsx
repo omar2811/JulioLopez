@@ -11,10 +11,12 @@ import Resume from "./resume";
 import Testimonial from "./testimonial";
 import PopularClients from "./popular-clients";
 import ContactForm from "./contact-form";
+import FloatingContact from "./FloatingContact";
 
 export default function Portfolio() {
   return (
     <>
+    <FloatingContact />
       <Navbar />
 
       <section id="home">
