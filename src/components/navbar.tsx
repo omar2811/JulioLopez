@@ -47,13 +47,15 @@ export function Navbar() {
       >
         <div className="flex items-center justify-between">
           {/* LOGO */}
-          <a href="#home" className="flex items-center">
-            <img
-              src="/image/logo.jpg"
-              alt="Logo"
-              className="h-9 w-auto object-contain"
-            />
-          </a>
+      <a href="#home" className="flex items-center transition-transform hover:scale-105">
+  <img
+    src="/image/logo.jpg"
+    alt="Julio López Logo"
+    /* h-16 es casi el doble del tamaño anterior (h-9) */
+    /* h-20 lo hace ver imponente en pantallas grandes */
+    className="h-16 lg:h-20 w-auto object-contain"
+  />
+</a>
 
           {/* MENÚ DESKTOP - FORZANDO TEXTO NEGRO */}
           <div className="hidden lg:flex items-center gap-10">

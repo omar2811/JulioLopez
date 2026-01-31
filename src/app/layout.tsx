@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/next-script-for-ga */
 import "./globals.css";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Great_Vibes, Montserrat } from "next/font/google"; //
 import { Layout } from "@/components";
 
 const roboto = Roboto({
@@ -10,15 +10,26 @@ const roboto = Roboto({
   display: "swap",
 });
 
+// Configuración de la fuente para la firma
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-signature",
+});
+
+// Configuración de la fuente para el subtítulo
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  variable: "--font-sub",
+});
+
 export const metadata: Metadata = {
-  title: "Julio Lopez",
-  description:
-    "Introducing Tailwind Portfolio Page, a versatile and stylish portfolio template built on the foundation of Tailwind CSS and Material Tailwind.",
-  // --- AGREGADO AQUÍ ---
+  title: "Julio Lopez | Event Planner",
+  description: "Organización profesional de eventos.",
   icons: {
-    icon: "./image/logo1.jpg",
+    icon: "/image/event.png",
   },
-  // ---------------------
 };
 
 export default function RootLayout({
@@ -28,15 +39,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <script
-          defer
-          data-site="YOUR_DOMAIN_HERE"
-          src="https://api.nepcha.com/js/nepcha-analytics.js"
-        ></script>
-        {/* Ya no es necesario el link manual aquí, Next.js lo gestiona con metadata */}
-      </head>
-      <body className={roboto.className}>
+      {/* Aplicamos las variables de las fuentes al body */}
+      <body className={`${roboto.className} ${greatVibes.variable} ${montserrat.variable}`}>
         <Layout>
           {children}
         </Layout>
