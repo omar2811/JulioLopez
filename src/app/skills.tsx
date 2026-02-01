@@ -14,20 +14,20 @@ const fixMTProps = {
 
 const events = [
   {
+    title: "XV Años",
+    image: "/image/xvanos.jpg",
+  },
+  {
     title: "Bodas",
-    image: "/image/IMG_0658.JPG",
+    image: "/image/boda.jpg",
+  },
+  {
+    title: "Eventos Petit",
+    image: "/image/petit.jpg",
   },
   {
     title: "Eventos Corporativos",
-    image: "/image/imagen6.jpg",
-  },
-  {
-    title: "Fiestas Sociales",
-    image: "/image/IMG_0659.JPG",
-  },
-  {
-    title: "Eventos Especiales",
-    image: "/image/IMG_0660.JPG",
+    image: "/image/Evento-Corporativo.jpg",
   },
 ];
 

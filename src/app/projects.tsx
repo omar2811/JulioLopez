@@ -23,8 +23,8 @@ const images = [
   "/image/PHOTO-2026-01-10-20-51-06 3.jpg",
   "/image/PHOTO-2026-01-10-20-51-07.jpg",
   "/image/PHOTO-2026-01-10-20-52-30.jpg",
-  "/image/PHOTO-2026-01-10-20-52-30.jpg",
-  "/image/PHOTO-2026-01-10-20-52-30.jpg",
+  "/image/boda.jpg",
+  "/image/petit.jpg",
 ];
 
 export default function Projects() {

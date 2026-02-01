@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   title: "Julio Lopez | Event Planner",
   description: "Organización profesional de eventos.",
   icons: {
-    icon: "/image/event.png",
+    icon: "/image/logo1.jpg",
   },
 };
 
