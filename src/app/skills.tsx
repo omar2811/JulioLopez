@@ -29,6 +29,14 @@ const events = [
     title: "Eventos Corporativos",
     image: "/image/Evento-Corporativo.jpg",
   },
+  {
+    title: "Eventos Sociales",
+    image: "/image/PHOTO-2026-02-01-15-03-52.jpg",
+  },
+    {
+    title: "Eventos Especiales",
+    image: "/image/IMG_0660.JPG",
+  },
 ];
 
 export default function Skills() {
